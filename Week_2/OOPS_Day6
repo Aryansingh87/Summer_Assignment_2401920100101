@@ -1,0 +1,60 @@
+#include <iostream>
+using namespace std;
+
+// Package: music
+namespace music {
+
+    // Interface Playable
+    class Playable {
+    public:
+        virtual void play() = 0;   // Pure virtual function
+        virtual ~Playable() {}
+    };
+
+    // Package: music.string
+    namespace string_package {
+
+        class Veena : public Playable {
+        public:
+            void play() override {
+                cout << "Playing Veena" << endl;
+            }
+        };
+
+    }
+
+    // Package: music.wind
+    namespace wind {
+
+        class Saxophone : public Playable {
+        public:
+            void play() override {
+                cout << "Playing Saxophone" << endl;
+            }
+        };
+
+    }
+}
+
+// Package: live
+int main() {
+
+    // a. Create instance of Veena and call play()
+    music::string_package::Veena v;
+    v.play();
+
+    // b. Create instance of Saxophone and call play()
+    music::wind::Saxophone s;
+    s.play();
+
+    // c. Store objects in Playable pointer and call play()
+    music::Playable* p;
+
+    p = &v;
+    p->play();
+
+    p = &s;
+    p->play();
+
+    return 0;
+}
