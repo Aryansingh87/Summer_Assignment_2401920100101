@@ -28,3 +28,30 @@ public:
         return head;
     }
 };
+
+
+
+
+class Solution {
+public:
+    bool isPalindrome(ListNode* head) {
+        vector<int> arr;
+        while(head!=NULL){
+            arr.push_back(head->val);
+            head=head->next;
+        }
+        int st=0 , end=arr.size()-1;
+        while(st < end){
+            if(arr[st]!=arr[end]){
+                return false;
+            }
+            st++;
+            end--;
+        }
+        return true;
+        
+    }
+};
+
+
+
