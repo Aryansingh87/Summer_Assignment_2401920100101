@@ -14,3 +14,26 @@ public:
                hasPathSum(root->right, targetSum - root->val);
     }
 };
+
+
+
+class Solution {
+public:
+int height(TreeNode* root){
+    if(root == NULL){
+        return 0;
+    }
+    int leftHT = height(root->left);
+    int rightHT = height(root->right);
+    return max(leftHT , rightHT) + 1;
+}
+    int diameterOfBinaryTree(TreeNode* root) {
+        if(root == NULL){
+            return 0;
+        }
+        int leftDiam = diameterOfBinaryTree(root->left);
+        int rightDiam = diameterOfBinaryTree(root->right);
+        int currDiam = height(root->left) + height(root->right);
+        return max(currDiam , max(leftDiam , rightDiam));
+    }
+};
