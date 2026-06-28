@@ -1,0 +1,154 @@
+#include <iostream>
+using namespace std;
+
+// Interface
+class test {
+public:
+    virtual int square(int) = 0;
+};
+
+// Implement interface
+class Arithmetic : public test {
+public:
+    int square(int x) {
+        return x * x;
+    }
+};
+
+// Use object
+class ToTestInt {
+public:
+    void show() {
+        Arithmetic obj;
+        cout << obj.square(5);
+    }
+};
+
+int main() {
+    ToTestInt t;
+    t.show();
+
+    return 0;
+}
+
+#include <iostream>
+using namespace std;
+
+class Outer {
+public:
+    void display() {
+        cout << "Outer Class Function" << endl;
+    }
+
+    class Inner {
+    public:
+        void display() {
+            cout << "Inner Class Function";
+        }
+    };
+};
+
+int main() {
+
+    Outer obj1;
+    obj1.display();
+
+    Outer::Inner obj2;
+    obj2.display();
+
+    return 0;
+}
+
+
+#include <iostream>
+using namespace std;
+
+class Point {
+private:
+    int x, y;
+
+public:
+
+    Point() {
+        x = 0;
+        y = 0;
+    }
+
+    Point(int x, int y) {
+        this->x = x;
+        this->y = y;
+    }
+
+    void setX(int x) {
+        this->x = x;
+    }
+
+    void setY(int y) {
+        this->y = y;
+    }
+
+    void setXY(int x, int y) {
+        this->x = x;
+        this->y = y;
+    }
+
+    void display() {
+        cout << x << " " << y;
+    }
+};
+
+int main() {
+
+    Point p;
+
+    p.setXY(10, 20);
+
+    p.display();
+
+    return 0;
+}
+
+#include <iostream>
+using namespace std;
+
+class Box {
+protected:
+    float length, breadth;
+
+public:
+
+    Box(float l, float b) {
+        length = l;
+        breadth = b;
+    }
+
+    float area() {
+        return length * breadth;
+    }
+};
+
+class Box3D : public Box {
+private:
+    float height;
+
+public:
+
+    Box3D(float l, float b, float h)
+        : Box(l, b) {
+        height = h;
+    }
+
+    float volume() {
+        return length * breadth * height;
+    }
+};
+
+int main() {
+
+    Box3D obj(10, 5, 4);
+
+    cout << obj.area() << endl;
+    cout << obj.volume();
+
+    return 0;
+}
